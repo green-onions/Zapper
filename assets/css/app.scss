@@ -1,0 +1,38 @@
+@import "~bootstrap/scss/bootstrap";
+
+$primary: #1a472a;
+$secondary: #5d5d5d;
+$green-light: #2a623d;
+$grey-light: #aaaaaa;
+$black: #000000;
+$font-title: 'Saira Stencil One', cursive;
+$font-main: 'Raleway', sans-serif;
+
+body {
+    background-color: $black;
+    font-family: $font-main;
+    font-size: 1rem;
+    color: #FFFFFF;
+}
+
+h1 {
+    font-family: $font-title;
+}
+
+.navbar {
+    background-color: $green-light;
+}
+
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-title {
+    text-shadow: 1px 1px 2px $grey-light;
+}
+
+.navbar-brand {
+    font-family: $font-title;
+    font-size: 2rem;
+}
