@@ -2,4 +2,12 @@
 
 {% block body %}
     <h1>Le site des visionneurs en série</h1>
+    {# templates/index.html.twig #}
+    <a href="{{ path('zapper_show', { 'slug': "walking-dead" }) }}">
+        Testing show() method from WildController with a real program s slug.
+    </a>
+    <br>
+    <a href="{{ path('zapper_index') }}">
+        Testing index() method from WildController to view all programs.
+    </a>
 {% endblock %}
