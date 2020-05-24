@@ -3,16 +3,16 @@
 {% block title %}Les saisons de {{ program.title }}{% endblock %}
 
 {% block body %}
-    <h1>Toutes les saisons<br> de {{ program.title }}</h1>
-    <div class="row">
+    <h1>Toutes les saisons<br> de '{{ program.title }}'</h1>
+    <div class="row col-12">
         {% for season in seasons %}
             <div class="col-3">
                 <div class="card col-12">
                     <div class="card-body">
-                        <h5 class="card-title">Saison {{ season.number }}</h5>
+                        <h5 class="card-title text-dark">Saison {{ season.number }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ season.year }}</h6>
-                        <p class="card-text">{{ season.description }}</p>
-                        <a href="/zapper/season/{{ season.id }}" class="card-link">Liste des épisodes</a>
+                        <p class="card-text text-dark">{{ season.description }}</p>
+                        <a href="/zapper/season/{{ season.id }}" class="card-link card-link-season">Liste des épisodes</a>
                     </div>
                 </div>
             </div>

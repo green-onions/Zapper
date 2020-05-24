@@ -17,6 +17,22 @@ body {
 
 h1 {
     font-family: $font-title;
+    margin: 1rem;
+    text-align: center;
+}
+
+h2 {
+    font-family: $font-title;
+    margin: 1rem;
+}
+
+a {
+    color: $grey-light;
+}
+
+a:hover {
+    color: $green-light;
+    text-decoration: none;
 }
 
 .navbar {
@@ -35,4 +51,16 @@ h1 {
 .navbar-brand {
     font-family: $font-title;
     font-size: 2rem;
+}
+
+.card-link-season {
+    background-color: $primary;
+    color: #FFFFFF;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.card-link-season:hover {
+    background-color: $green-light;
+    color: #FFFFFF;
 }

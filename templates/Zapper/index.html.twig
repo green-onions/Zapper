@@ -5,7 +5,7 @@
     {% for program in programs %}
         <div>
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-            <p>{{ program.summary }}</p>
+            <p class="ml-3">{{ program.summary }}</p>
         </div>
     {% else %}
         Aucune série trouvée.
