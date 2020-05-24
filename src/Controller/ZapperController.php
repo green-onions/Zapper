@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Program;
+use App\Entity\Season;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -81,6 +82,49 @@ class ZapperController extends AbstractController
         return $this->render('zapper/category.html.twig', [
             'category' => $category,
             'programs' => $programsInCategory
+        ]);
+    }
+
+    /**
+     * @Route("/{slug}/seasons", requirements={"slug"="[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ0-9-]+"}, defaults={"slug" = null}, utf8=true, name="seasons")
+     * @param string $slug
+     * @return Response
+     */
+    public function showByProgram(string $slug): Response
+    {
+        $slug = preg_replace('/-/', ' ', ucwords(trim(strip_tags($slug)), "-"));
+        $program = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findOneBy(['title' => mb_strtolower($slug)]);
+
+        $seasonsInProgram = $this->getDoctrine()
+            ->getRepository(Season::class)
+            ->findBy(['program' => $program]);
+
+        return $this->render('zapper/seasons.html.twig', [
+            'program' => $program,
+            'seasons' => $seasonsInProgram
+        ]);
+    }
+
+    /**
+     * @Route("/season/{id}", defaults={"id" = null}, name="episodes")
+     * @param int $id
+     * @return Response
+     */
+    public function showBySeason(int $id): Response
+    {
+        if (!$id) {
+            throw $this->createNotFoundException('No id has been sent to find a season in season\'s table.');
+        }
+
+        $season = $this->getDoctrine()
+            ->getRepository(Season::class)
+            ->findOneBy(['id' => $id]);
+
+        return $this->render('zapper/episodes.html.twig', [
+            'season'  => $season,
+            'episodes' => $season
         ]);
     }
 }
