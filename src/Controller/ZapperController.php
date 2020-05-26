@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Repository\CategoryRepository;
+use App\Repository\ProgramRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -122,9 +126,30 @@ class ZapperController extends AbstractController
             ->getRepository(Season::class)
             ->findOneBy(['id' => $id]);
 
+        $program = $season->getProgram();
+        $episodes = $season->getEpisodes();
+
         return $this->render('zapper/episodes.html.twig', [
+            'season'   => $season,
+            'episodes' => $episodes,
+            'program'  => $program
+        ]);
+    }
+
+    /**
+     * @Route("/episode/{id}", defaults={"id" = null}, name="episode")
+     * @param Episode $episode
+     * @return Response
+     */
+    public function showEpisode(Episode $episode): Response
+    {
+        $season  = $episode->getSeason();
+        $program = $season->getProgram();
+
+        return $this->render('zapper/episode.html.twig', [
+            'program' => $program,
             'season'  => $season,
-            'episodes' => $season
+            'episode' => $episode
         ]);
     }
 }

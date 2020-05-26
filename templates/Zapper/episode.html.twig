@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ program.title }}, S. {{ season.number }}, Ep. {{ episode.number }}{% endblock %}
+
+{% block body %}
+    <h2>{{ program.title }}</h2>
+    <a class="ml-4" href="{{ path('zapper_seasons', {slug: program.title|lower|replace({' ': '-'})}) }}">Toutes les infos sur cette série</a>
+    <h3 class="ml-3 mt-4">Saison {{ season.number }}</h3>
+    <p class="row col-7 ml-2">{{ season.description }}</p>
+    <a class="ml-4" href="{{ path('zapper_episodes', {id: season.id}) }}">Toutes les infos sur cette saison</a>
+    <h3 class="ml-3 mt-4">Épisode {{ episode.number }}</h3>
+    {% if episode.synopsis is null %}
+        <p class="ml-4">Le synopsis de cet épisode n'est pas encore dans notre base de données.</p>
+    {% else %}
+        <p class="ml-4">{{ episode.synopsis }}</p>
+    {% endif %}
+{% endblock %}
