@@ -6,8 +6,11 @@ use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Form\CategoryType;
+use App\Form\ProgramSearchType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProgramRepository;
+use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +26,7 @@ class ZapperController extends AbstractController
      * @Route("/", name="index")
      * @return Response A response instance
      */
-    public function index() :Response
+    public function index(Request $request) :Response
     {
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
@@ -34,7 +37,7 @@ class ZapperController extends AbstractController
         }
 
         return $this->render('zapper/index.html.twig', [
-            'programs' => $programs,
+            'programs'  => $programs,
         ]);
     }
 
