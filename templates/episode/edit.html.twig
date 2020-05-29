@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Episode{% endblock %}
+{% block title %}Éditer l'épisode{% endblock %}
 
 {% block body %}
-    <h1>Edit Episode</h1>
-
-    {{ include('episode/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('episode_index') }}">back to list</a>
-
-    {{ include('episode/_delete_form.html.twig') }}
+    <div class="row d-flex justify-content-center">
+        <h1 class="title-admin">Éditer l'épisode</h1>
+        <h2 class="pt-1"><a href="{{ path('episode_index') }}"><i class="fa fa-arrow-left"></i></a></h2>
+        <div class="d-flex align-items-center ml-3">
+            {{ include('episode/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <div class="col-10 offset-1">
+        {{ include('episode/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+    </div>
 {% endblock %}

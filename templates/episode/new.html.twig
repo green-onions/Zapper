@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Episode{% endblock %}
+{% block title %}Créer un épisode{% endblock %}
 
 {% block body %}
-    <h1>Create new Episode</h1>
-
-    {{ include('episode/_form.html.twig') }}
-
-    <a href="{{ path('episode_index') }}">back to list</a>
+    <div class="row d-flex justify-content-center">
+        <h1 class="title-admin">Créer un épisode</h1>
+        <h2 class="pt-1"><a href="{{ path('episode_index') }}"><i class="fa fa-arrow-left"></i></a></h2>
+    </div>
+    <div class="col-10 offset-1">
+        {{ include('episode/_form.html.twig') }}
+    </div>
 {% endblock %}

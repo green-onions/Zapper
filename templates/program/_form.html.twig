@@ -1,4 +1,13 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="row">
+    <div class="col-6">
+        {{ form_row(form.title) }}
+    </div>
+    <div class="col-6">
+    {{ form_row(form.category) }}
+    </div>
+</div>
+    {{ form_row(form.summary) }}
+    {{ form_row(form.poster) }}
+    <button class="btn btn-save m-0 p-0"><h2 class="ml-0"><i class="fa fa-save"></i></h2></button>
 {{ form_end(form) }}

@@ -8,7 +8,10 @@ $black: #000000;
 $font-title: 'Saira Stencil One', cursive;
 $font-main: 'Raleway', sans-serif;
 
+/* START MAIN */
+
 body {
+    margin-top: 3rem;
     background-color: $black;
     font-family: $font-main;
     font-size: 1rem;
@@ -53,6 +56,46 @@ a:hover {
     font-size: 2rem;
 }
 
+.nav-link {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-shadow: 1px 1px 2px $primary;
+    color: $black;
+    margin-top: 0.2rem;
+}
+
+.dropdown-menu {
+    background-color: $grey-light;
+}
+
+/* END MAIN */
+
+/* START ADMIN */
+
+.th-name {
+    width: 250px;
+}
+
+.poster-show-admin {
+    width: 100%;
+}
+
+.title-admin {
+    text-align: left;
+}
+
+.btn-save {
+    color: $grey-light;
+}
+
+.btn-save:hover {
+    color: $primary;
+}
+
+/* END ADMIN */
+
+/* START USER */
+
 .card-link-season {
     background-color: $primary;
     color: #FFFFFF;
@@ -64,3 +107,5 @@ a:hover {
     background-color: $green-light;
     color: #FFFFFF;
 }
+
+/* END USER */
