@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block body %}
+    <div class="row col-12 m-0 d-flex justify-content-between">
+        <div class="row">
+            <h1 class="title-admin">{{ category.name }}</h1>
+            <h2 class="pt-1"><a href="{{ path('category_index') }}"><i class="fa fa-arrow-left"></i></a></h2>
+            <h2 class="pt-2"><a href="{{ path('category_edit', {'id': category.id}) }}"><i class="fa fa-edit"></i></a></h2>
+        </div>
+        <div class="d-flex align-items-center">
+            {{ include('category/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <table class="table text-white">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ category.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

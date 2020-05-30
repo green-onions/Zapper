@@ -1,19 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une catégorie{% endblock %}
+{% block title %}Category index{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une catégorie</h1>
-    {{ form_start(form) }}
-        <div class="col-3">
-            {{ form_widget(form) }}
-            <button class="btn btn-light">{{ button_label|default('Enregister') }}</button>
-        </div>
-    {{ form_end(form) }}
-    <h2>Catégories déjà existantes :</h2>
-    {% for categorie in categories %}
-        <ul>
-            <li>{{ categorie.name }}</li>
-        </ul>
-    {% endfor %}
+    <div class="row d-flex justify-content-center align-items-center">
+        <h1>Index des catégories</h1>
+        <h2 class="pt-1"><a href="{{ path('category_new') }}"><i class="fa fa-plus-circle"></i></a></h2>
+    </div>
+    <div class="col-12">
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a href="{{ path('category_show', {'id': category.id}) }}">Voir</a> /
+                        <a href="{{ path('category_edit', {'id': category.id}) }}">Éditer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune catégorie trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
