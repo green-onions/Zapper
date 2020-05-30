@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Toutes les séries de la table program :</h1>
+    <div class="row d-flex justify-content-center align-items-center">
+        <h1>Toutes les séries</h1>
+        <h2 class="pt-1"><a href="/"><i class="fa fa-arrow-left"></i></a></h2>
+    </div>
     {% for program in programs %}
-        <div>
-            <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+        <div class="ml-3">
+            <h3>{{ loop.index }} / {{ program.title }}</h3>
+            <h4 class="ml-3">[{{ program.category.name }}] [{{ program.seasons.count }} saisons]</h4>
             <p class="ml-3">{{ program.summary }}</p>
         </div>
     {% else %}
         Aucune série trouvée.
     {% endfor %}
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
 {% endblock %}

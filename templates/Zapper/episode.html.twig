@@ -3,12 +3,16 @@
 {% block title %}{{ program.title }}, S. {{ season.number }}, Ep. {{ episode.number }}{% endblock %}
 
 {% block body %}
-    <h2>{{ program.title }}</h2>
-    <a class="ml-4" href="{{ path('zapper_seasons', {slug: program.title|lower|replace({' ': '-'})}) }}">Toutes les infos sur cette série</a>
-    <h3 class="ml-3 mt-4">Saison {{ season.number }}</h3>
+    <div class="row ml-1">
+        <h2>{{ program.title }}</h2>
+        <h2 class="ml-1 pt-1"><a href="{{ path('zapper_seasons', {slug: program.title|lower|replace({' ': '-'})}) }}"><i class="fa fa-info-circle"></i></a></h2>
+    </div>
+    <div class="row ml-4 mt-3">
+        <h3>Saison {{ season.number }}</h3>
+        <h3><a class="ml-3 pt-1" href="{{ path('zapper_episodes', {id: season.id}) }}"><i class="fa fa-info-circle"></i></a></h3>
+    </div>
     <p class="row col-7 ml-2">{{ season.description }}</p>
-    <a class="ml-4" href="{{ path('zapper_episodes', {id: season.id}) }}">Toutes les infos sur cette saison</a>
-    <h3 class="ml-3 mt-4">Épisode {{ episode.number }}</h3>
+    <h3 class="ml-4 mt-4">Épisode {{ episode.number }}</h3>
     {% if episode.synopsis is null %}
         <p class="ml-4">Le synopsis de cet épisode n'est pas encore dans notre base de données.</p>
     {% else %}

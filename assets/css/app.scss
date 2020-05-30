@@ -18,15 +18,16 @@ body {
     color: #FFFFFF;
 }
 
-h1 {
+h1, h2, h3, h4 {
     font-family: $font-title;
-    margin: 1rem;
-    text-align: center;
 }
 
-h2 {
-    font-family: $font-title;
+h1, h2 {
     margin: 1rem;
+}
+
+h1 {
+    text-align: center;
 }
 
 a {
@@ -106,6 +107,10 @@ a:hover {
 .card-link-season:hover {
     background-color: $green-light;
     color: #FFFFFF;
+}
+
+.poster-show-user {
+    height: 40rem;
 }
 
 /* END USER */

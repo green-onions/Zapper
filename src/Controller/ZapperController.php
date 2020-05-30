@@ -68,7 +68,7 @@ class ZapperController extends AbstractController
     }
 
     /**
-     * @Route("/categoryTest/{categoryName}", requirements={"categoryName"="[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ0-9-]+"}, defaults={"categoryName" = null}, utf8=true, name="categoryTest")
+     * @Route("/category/{categoryName}", requirements={"categoryName"="[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ0-9-]+"}, defaults={"categoryName" = null}, utf8=true, name="categoryTest")
      * @param string $categoryName
      * @return Response
      */
@@ -81,7 +81,7 @@ class ZapperController extends AbstractController
         $programsInCategory = $this->getDoctrine()
             ->getRepository(Program::class)
             ->findBy(
-                ['categoryTest' => $category],
+                ['category' => $category],
                 ['id' => 'DESC'],
                 3
             );
