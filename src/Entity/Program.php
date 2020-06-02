@@ -6,9 +6,12 @@ use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass=ProgramRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\ProgramRepository", repositoryClass=ProgramRepository::class)
+ * @UniqueEntity("title", message="La série {{ value }} existe déjà.")
  */
 class Program
 {
@@ -21,11 +24,18 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Une série sans titre, c'est un peu bizarre, non ?")
+     * @Assert\Length(max=255, maxMessage="Le nom de la série ne doit pas dépasser {{ limit }} caractères.")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Un peu trop succint, comme résumé...")
+     * @Assert\Regex(
+     *     pattern="/Plus belle la vie/",
+     *     match=false,
+     *     message="On parle de vraies séries, ici !")
      */
     private $summary;
 
