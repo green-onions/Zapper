@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les infos sur l'acteur·rice{% endblock %}
+
+{% block body %}
+    <div class="row d-flex justify-content-center">
+        <h1 class="title-admin">Modifier les infos sur l'acteur·rice</h1>
+        <h2 class="pt-1"><a href="{{ path('actor_index') }}"><i class="fa fa-arrow-left"></i></a></h2>
+        <div class="d-flex align-items-center ml-3">
+            {{ include('actor/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <div class="col-10 offset-1">
+        {{ include('actor/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+{% endblock %}

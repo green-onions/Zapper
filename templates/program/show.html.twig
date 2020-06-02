@@ -33,6 +33,16 @@
                         <th>Résumé</th>
                         <td>{{ program.summary }}</td>
                     </tr>
+                    <tr>
+                        <th>Acteur·rice·s</th>
+                        <td>
+                            {% for actor in program.actors %}
+                                <a href="{{ path('actor_show', {'id': actor.id}) }}">{{ actor.name }}</a>{{- not loop.last ? ', ' : '' -}}
+                            {% else %}
+                                Aucun·e acteur·rice pour cette série
+                            {% endfor %}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
