@@ -17,15 +17,19 @@
         <table class="table text-white">
             <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ season.id }}</td>
             </tr>
             <tr>
-                <th>Number</th>
+                <th>Numéro</th>
                 <td>{{ season.number }}</td>
             </tr>
             <tr>
-                <th>Year</th>
+                <th>Épisodes</th>
+                <td>{{ season.episodes.count }}</td>
+            </tr>
+            <tr>
+                <th>Année</th>
                 <td>{{ season.year }}</td>
             </tr>
             <tr>

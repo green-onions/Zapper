@@ -24,6 +24,7 @@ class ZapperController extends AbstractController
     /**
      * Show all rows from Program's entity
      * @Route("/", name="index")
+     * @param Request $request
      * @return Response A response instance
      */
     public function index(Request $request) :Response

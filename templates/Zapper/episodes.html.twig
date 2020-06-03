@@ -7,7 +7,7 @@
     <p class="row col-7 ml-1">{{ season.description }}</p>
     <ul>
         {% for episode in episodes %}
-        <li>Épisode {{ episode.number }} : {{ episode.title }}</li>
+        <li>Épisode {{ episode.number }} : "{{ episode.title }}"</li>
         {% endfor %}
     </ul>
 {% endblock %}
