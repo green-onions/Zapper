@@ -17,3 +17,6 @@ https://www.loom.com/share/c4c581eaa53f4382a2a589e07e4b2443
 
 Symfony / Quest 15 :
 https://www.loom.com/share/c94afe2d0d40443fb5d00975b388dfdf
+
+Symfony / Quest 16 :
+https://www.loom.com/share/63de164ab34f4e6dbfaba1c20a095eb3

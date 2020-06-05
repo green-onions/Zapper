@@ -3,9 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Actor;
-use Doctrine\DBAL\Types\StringType;
-use Doctrine\DBAL\Types\TextType;
-use Doctrine\DBAL\Types\Type;
+use App\Entity\Program;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,8 +15,12 @@ class ActorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, ['label' => 'Nom'])
-            ->add('programs', null, ['choice_label' => 'title', 'label' => 'Apparaît dans'])
+            ->add('name', TextType::class, ['label' => 'Nom'])
+            ->add('programs', EntityType::class, [
+                'choice_label' => 'title',
+                'label' => 'Apparaît dans',
+                'class' => Program::class
+            ])
         ;
     }
 
