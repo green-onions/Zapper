@@ -69,7 +69,7 @@ class ZapperController extends AbstractController
     }
 
     /**
-     * @Route("/category/{categoryName}", requirements={"categoryName"="[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ0-9-]+"}, defaults={"categoryName" = null}, utf8=true, name="categoryTest")
+     * @Route("/category/{categoryName}", requirements={"categoryName"="[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ0-9-]+"}, defaults={"categoryName" = null}, utf8=true, name="category")
      * @param string $categoryName
      * @return Response
      */
@@ -141,7 +141,7 @@ class ZapperController extends AbstractController
     }
 
     /**
-     * @Route("/episode/{id}", defaults={"id" = null}, name="episode")
+     * @Route("/episode/{slug}", defaults={"slug" = null}, name="episode")
      * @param Episode $episode
      * @return Response
      */
