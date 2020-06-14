@@ -39,6 +39,10 @@ a:hover {
     text-decoration: none;
 }
 
+.title {
+    font-family: $font-title;
+}
+
 .btn {
     color: $grey-light;
     background-color: $primary;
@@ -48,6 +52,34 @@ a:hover {
 .btn:hover {
     background-color: $green-light;
     border-color: $green-light;
+}
+
+.bck-primary {
+    background-color: $primary;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.bck-primary-light {
+    background-color: $green-light;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.bck-secondary {
+    background-color: $secondary;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.bck-secondary-light {
+    background-color: $grey-light;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.bck-dark {
+    background-color: $secondary;
 }
 
 .navbar {
@@ -136,6 +168,23 @@ a:hover {
 
 .poster-show-user {
     height: 40rem;
+}
+
+.yellow-star {
+    color: #dbb700;
+}
+
+.grey-star {
+    color: $secondary;
+}
+
+#comment_rate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.episode-comment {
+    height: 24rem;
 }
 
 /* END USER */

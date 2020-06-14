@@ -1,0 +1,41 @@
+{% if comment.rate == 1 %}
+    <div class="row">
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+    </div>
+{% elseif comment.rate == 2 %}
+    <div class="row">
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+    </div>
+{% elseif comment.rate == 3 %}
+    <div class="row">
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+    </div>
+{% elseif comment.rate == 4 %}
+    <div class="row">
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="grey-star"><i class="fa fa-star"></i></p>
+    </div>
+{% elseif comment.rate == 5 %}
+    <div class="row">
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+        <p class="yellow-star"><i class="fa fa-star"></i></p>
+    </div>
+{% endif %}

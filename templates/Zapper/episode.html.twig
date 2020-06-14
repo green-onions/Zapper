@@ -3,19 +3,68 @@
 {% block title %}{{ program.title }}, S. {{ season.number }}, Ep. {{ episode.number }}{% endblock %}
 
 {% block body %}
-    <div class="row ml-1">
-        <h2>{{ program.title }}</h2>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bck-dark">
+                    <h5 class="modal-title title" id="exampleModalLabel">Ton commentaire</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bck-dark">
+                    {{ include('episode/_comment_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-0 ml-4">
+        <h2 class="ml-0">{{ program.title }}</h2>
         <h2 class="ml-1 pt-1"><a href="{{ path('zapper_seasons', {slug: program.title|lower|replace({' ': '-'})}) }}"><i class="fa fa-info-circle"></i></a></h2>
     </div>
-    <div class="row ml-4 mt-3">
-        <h3>Saison {{ season.number }}</h3>
-        <h3><a class="ml-3 pt-1" href="{{ path('zapper_episodes', {id: season.id}) }}"><i class="fa fa-info-circle"></i></a></h3>
+
+    <div class="row">
+        <div class="col-7 mr-0">
+            <div class="row m-0 ml-4">
+                <h3>Saison {{ season.number }}</h3>
+                <h3><a class="ml-3 pt-1" href="{{ path('zapper_episodes', {id: season.id}) }}"><i class="fa fa-info-circle"></i></a></h3>
+            </div>
+            <div class="row ml-0">
+                <p class="row ml-4">{{ season.description }}</p>
+            </div>
+
+            <h3 class="ml-4 mt-4">Épisode {{ episode.number }} : '{{ episode.title }}'</h3>
+            {% if episode.synopsis is null %}
+                <p class="ml-4 pl-0">Le synopsis de cet épisode n'est pas encore dans notre base de données.</p>
+            {% else %}
+                <p class="ml-4 pl-0">{{ episode.synopsis }}</p>
+            {% endif %}
+
+            {% if app.user %}
+                <button type="button" class="btn ml-4 mt-4" data-toggle="modal" data-target="#exampleModal">
+                    Ajouter un commentaire
+                </button>
+            {% else %}
+                <p class="col-7 ml-4 mt-4 bck-primary"><a href="{{ path('app_login') }}">Connecte-toi</a> pour pouvoir laisser un commentaire !</p>
+            {% endif %}
+        </div>
+        <div class="col-4 ml-5">
+            <div class="text-center">
+                <h3>Commentaires</h3>
+            </div>
+            <div class="episode-comment overflow-auto">
+                {% for comment in comments %}
+                    <div class="bck-secondary-light text-dark mb-2">
+                        <div class="row ml-0">
+                            <p class="mr-4 title">{{ comment.author.pseudo }}</p>
+                            {{ include('episode/_rate.html.twig') }}
+                        </div>
+                        <p class="mb-0">« {{ comment.comment }} »</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    <p class="row col-7 ml-2">{{ season.description }}</p>
-    <h3 class="ml-4 mt-4">Épisode {{ episode.number }}</h3>
-    {% if episode.synopsis is null %}
-        <p class="ml-4">Le synopsis de cet épisode n'est pas encore dans notre base de données.</p>
-    {% else %}
-        <p class="ml-4">{{ episode.synopsis }}</p>
-    {% endif %}
 {% endblock %}

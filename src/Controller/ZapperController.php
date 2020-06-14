@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\CategoryType;
+use App\Form\CommentType;
 use App\Form\ProgramSearchType;
 use App\Repository\CategoryRepository;
+use App\Repository\EpisodeRepository;
 use App\Repository\ProgramRepository;
 use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -142,18 +145,33 @@ class ZapperController extends AbstractController
 
     /**
      * @Route("/episode/{slug}", defaults={"slug" = null}, name="episode")
+     * @param Request $request
      * @param Episode $episode
      * @return Response
      */
-    public function showEpisode(Episode $episode): Response
+    public function showEpisode(Request $request, Episode $episode): Response
     {
-        $season  = $episode->getSeason();
-        $program = $season->getProgram();
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        $season   = $episode->getSeason();
+        $program  = $season->getProgram();
+        $comments = $episode->getComments();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setEpisode($episode);
+            $comment->setAuthor($this->getUser());
+            $this->getDoctrine()->getManager()->persist($comment);
+            $this->getDoctrine()->getManager()->flush();
+        }
 
         return $this->render('zapper/episode.html.twig', [
-            'program' => $program,
-            'season'  => $season,
-            'episode' => $episode
+            'form'     => $form->createView(),
+            'program'  => $program,
+            'season'   => $season,
+            'episode'  => $episode,
+            'comments' => $comments,
         ]);
     }
 }
