@@ -39,8 +39,23 @@ a:hover {
     text-decoration: none;
 }
 
+.btn {
+    color: $grey-light;
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.btn:hover {
+    background-color: $green-light;
+    border-color: $green-light;
+}
+
 .navbar {
     background-color: $green-light;
+}
+
+.navbar-content {
+    width: 100%;
 }
 
 .navbar-logo {
@@ -96,6 +111,16 @@ a:hover {
 /* END ADMIN */
 
 /* START USER */
+
+.user-pseudo {
+    font-family: $font-title;
+    font-size: 1rem;
+    color: $green-light;
+    background-color: $black;
+    border-radius: 3px;
+    padding: 0.5rem;
+    height: 60%;
+}
 
 .card-link-season {
     background-color: $primary;
