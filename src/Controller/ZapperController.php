@@ -159,11 +159,20 @@ class ZapperController extends AbstractController
         $program  = $season->getProgram();
         $comments = $episode->getComments();
 
+        foreach ($comments->getValues() as $key => $commentToDelete) {
+            if ($this->isCsrfTokenValid('delete' . $commentToDelete->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($commentToDelete);
+                $entityManager->flush();
+            }
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setEpisode($episode);
             $comment->setAuthor($this->getUser());
             $this->getDoctrine()->getManager()->persist($comment);
             $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('zapper_episode', ['slug' => $episode->getSlug()]);
         }
 
         return $this->render('zapper/episode.html.twig', [

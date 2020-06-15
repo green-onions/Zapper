@@ -55,15 +55,29 @@
                 <h3>Commentaires</h3>
             </div>
             <div class="episode-comment overflow-auto">
-                {% for comment in comments %}
-                    <div class="bck-secondary-light text-dark mb-2">
-                        <div class="row ml-0">
-                            <p class="mr-4 title">{{ comment.author.pseudo }}</p>
-                            {{ include('episode/_rate.html.twig') }}
+                {% if comments|length > 0 %}
+                    {% for comment in comments %}
+                        <div class="bck-secondary-light text-dark mb-2">
+                            <div class="row d-flex justify-content-between ml-0">
+                                <div class="row ml-0">
+                                    <p class="mr-4 title">{{ comment.author.pseudo }}</p>
+                                    {{ include('episode/_rate.html.twig') }}
+                                </div>
+                                {% if is_granted('ROLE_ADMIN') or app.user.id == comment.author.id %}
+                                    <div class="m-0 mr-2">
+                                        {{ include('episode/_comment_delete.html.twig') }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <p class="mb-0">« {{ comment.comment }} »</p>
                         </div>
-                        <p class="mb-0">« {{ comment.comment }} »</p>
+                    {% endfor %}
+                {% else %}
+                    <div class="bck-secondary-light text-dark mb-2">
+                        <p class="mr-4 title">Pas de commentaires pour cet épisode...</p>
+                        <p class="mb-0">Et si tu ajoutais le premier ?</p>
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
