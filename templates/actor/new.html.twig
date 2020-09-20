@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un·e acteur·rice{% endblock %}
+
+{% block body %}
+    <div class="row d-flex justify-content-center">
+        <h1 class="title-admin">Ajouter un·e acteur·rice</h1>
+        <h2 class="pt-1"><a href="{{ path('actor_index') }}"><i class="fa fa-arrow-left"></i></a></h2>
+    </div>
+    <div class="col-10 offset-1">
+        {{ include('actor/_form.html.twig') }}
+    </div>
+{% endblock %}

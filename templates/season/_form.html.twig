@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-6">
+        {{ form_row(form.number) }}
+    </div>
+    <div class="col-6">
+        {{ form_row(form.year) }}
+    </div>
+</div>
+    {{ form_row(form.description) }}
+    {{ form_row(form.program) }}
+    <button class="btn btn-save m-0 p-0"><h2 class="ml-0"><i class="fa fa-save"></i></h2></button>
+{{ form_end(form) }}

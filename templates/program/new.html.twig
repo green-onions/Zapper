@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une série{% endblock %}
+
+{% block body %}
+    <div class="row d-flex justify-content-center">
+        <h1 class="title-admin">Créer une série</h1>
+        <h2 class="pt-1"><a href="{{ path('program_index') }}"><i class="fa fa-arrow-left"></i></a></h2>
+    </div>
+    <div class="col-10 offset-1">
+        {{ include('program/_form.html.twig') }}
+    </div>
+{% endblock %}

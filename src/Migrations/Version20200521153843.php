@@ -23,7 +23,7 @@ final class Version20200521153843 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE program ADD category_id INT NOT NULL');
-        $this->addSql('ALTER TABLE program ADD CONSTRAINT FK_92ED778412469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
+        $this->addSql('ALTER TABLE program ADD CONSTRAINT FK_92ED778412469DE2 FOREIGN KEY (category_id) REFERENCES categoryTest (id)');
         $this->addSql('CREATE INDEX IDX_92ED778412469DE2 ON program (category_id)');
     }
 

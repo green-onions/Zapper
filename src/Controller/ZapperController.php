@@ -3,11 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Form\CategoryType;
+use App\Form\CommentType;
+use App\Form\ProgramSearchType;
 use App\Repository\CategoryRepository;
+use App\Repository\EpisodeRepository;
 use App\Repository\ProgramRepository;
+use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +27,10 @@ class ZapperController extends AbstractController
     /**
      * Show all rows from Program's entity
      * @Route("/", name="index")
+     * @param Request $request
      * @return Response A response instance
      */
-    public function index() :Response
+    public function index(Request $request) :Response
     {
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
@@ -34,7 +41,7 @@ class ZapperController extends AbstractController
         }
 
         return $this->render('zapper/index.html.twig', [
-            'programs' => $programs,
+            'programs'  => $programs,
         ]);
     }
 
@@ -84,7 +91,7 @@ class ZapperController extends AbstractController
             );
 
         return $this->render('zapper/category.html.twig', [
-            'category' => $category,
+            'categoryTest' => $category,
             'programs' => $programsInCategory
         ]);
     }
@@ -137,19 +144,43 @@ class ZapperController extends AbstractController
     }
 
     /**
-     * @Route("/episode/{id}", defaults={"id" = null}, name="episode")
+     * @Route("/episode/{slug}", defaults={"slug" = null}, name="episode")
+     * @param Request $request
      * @param Episode $episode
      * @return Response
      */
-    public function showEpisode(Episode $episode): Response
+    public function showEpisode(Request $request, Episode $episode): Response
     {
-        $season  = $episode->getSeason();
-        $program = $season->getProgram();
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        $season   = $episode->getSeason();
+        $program  = $season->getProgram();
+        $comments = $episode->getComments();
+
+        foreach ($comments->getValues() as $key => $commentToDelete) {
+            if ($this->isCsrfTokenValid('delete' . $commentToDelete->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($commentToDelete);
+                $entityManager->flush();
+            }
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setEpisode($episode);
+            $comment->setAuthor($this->getUser());
+            $this->getDoctrine()->getManager()->persist($comment);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('zapper_episode', ['slug' => $episode->getSlug()]);
+        }
 
         return $this->render('zapper/episode.html.twig', [
-            'program' => $program,
-            'season'  => $season,
-            'episode' => $episode
+            'form'     => $form->createView(),
+            'program'  => $program,
+            'season'   => $season,
+            'episode'  => $episode,
+            'comments' => $comments,
         ]);
     }
 }

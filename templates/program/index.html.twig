@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des séries{% endblock %}
+
+{% block body %}
+    <div class="row d-flex justify-content-center align-items-center">
+        <h1>Index des séries</h1>
+        <h2 class="pt-1"><a href="{{ path('program_new') }}"><i class="fa fa-plus-circle"></i></a></h2>
+    </div>
+    <div class="col-12">
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="th-name">Nom</th>
+                    <th>Résumé</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for program in programs %}
+                <tr>
+                    <td>{{ program.id }}</td>
+                    <td>{{ program.title }}</td>
+                    <td>{{ program.summary }}</td>
+                    <td>
+                        <a href="{{ path('program_show', {'slug': program.slug}) }}">Voir</a>
+                        <a href="{{ path('program_edit', {'slug': program.slug}) }}">Éditer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucune série trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
