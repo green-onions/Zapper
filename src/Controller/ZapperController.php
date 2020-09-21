@@ -1,5 +1,5 @@
 <?php
-// src/Controller/ZapperController.php
+
 namespace App\Controller;
 
 use App\Entity\Category;
@@ -7,13 +7,7 @@ use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
-use App\Form\CategoryType;
 use App\Form\CommentType;
-use App\Form\ProgramSearchType;
-use App\Repository\CategoryRepository;
-use App\Repository\EpisodeRepository;
-use App\Repository\ProgramRepository;
-use phpDocumentor\Reflection\DocBlock\Tags\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,10 +21,9 @@ class ZapperController extends AbstractController
     /**
      * Show all rows from Program's entity
      * @Route("/", name="index")
-     * @param Request $request
      * @return Response A response instance
      */
-    public function index(Request $request) :Response
+    public function index() :Response
     {
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
@@ -47,7 +40,7 @@ class ZapperController extends AbstractController
 
     /**
      * @Route("/show/{slug}", requirements={"slug"="[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ0-9-]+"}, defaults={"slug" = null}, utf8=true, name="show")
-     * @param string $slug
+     * @param string|null $slug
      * @return Response
      */
     public function show(?string $slug): Response
