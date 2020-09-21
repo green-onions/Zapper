@@ -30,7 +30,7 @@
                 </div>
                 {% if app.user %}
                     <div class="d-flex align-items-center">
-                        <div class="user-pseudo d-flex align-items-center ml-3">{{ app.user.pseudo }}</div>
+                        <div class="user-pseudo d-flex align-items-center ml-3"><a href="{{ path('profile') }}">{{ app.user.pseudo }}</a></div>
                     </div>
                     <a href="{{ path('app_logout') }}" class="nav-link d-flex align-items-center ml-2"><i class="fa fa-user-times "></i></a>
                 {% else %}

@@ -187,4 +187,16 @@ a:hover {
     height: 24rem;
 }
 
+.card-profile {
+    background-color: $grey-light;
+    color: $primary;
+    margin-top: 4rem;
+    border: thick double $primary;
+    border-radius: 12px;
+}
+
+.raleway {
+    font-family: $font-main !important;
+}
+
 /* END USER */
